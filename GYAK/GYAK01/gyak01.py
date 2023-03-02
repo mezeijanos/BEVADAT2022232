@@ -6,5 +6,3 @@ for letter in greeting:
 
 def printer(input):
     print(input)
-
-printer("Hello Python!")
