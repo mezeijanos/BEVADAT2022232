@@ -39,9 +39,9 @@ def compare_two_array(array1: np.array, array2: np.array) -> np.array:
   return np.where(array1 == array2)[0]
   
 
-a = np.array([7,8,9])
-b = np.array([9,8,7])
-print(compare_two_array(a,b))
+#a = np.array([7,8,9])
+#b = np.array([9,8,7])
+#print(compare_two_array(a,b))
 
 # Készíts egy olyan függvényt, ami visszaadja string-ként a megadott array dimenzióit:
 # Be: [[1,2,3], [4,5,6]]
@@ -159,12 +159,23 @@ def add_border(array: np.array) -> np.array:
 # Ki: ['2023-03-01', '2023-03-02', .. , '2023-03-31',]
 # list_days()
 
+def list_days(start_date: str, end_date: str) -> np.array:
+  return np.arange(start_date, end_date, dtype='datetime64[D]')
+
 # Írj egy fügvényt ami vissza adja az aktuális dátumot az alábbi formában: YYYY-MM-DD. Térjen vissza egy 'numpy.datetime64' típussal.
 # Be:
 # Ki: 2017-03-24
 # get_act_date()
 
+def get_act_date() -> np.datetime64:
+  return np.datetime64('now','D')
+
 # Írj egy olyan függvényt ami visszadja, hogy mennyi másodperc telt el 1970 január 01. 00:02:00 óta. Int-el térjen vissza
 # Be: 
 # Ki: másodpercben az idó, int-é kasztolva
 # sec_from_1970()
+
+def sec_from_1970():
+    start_time = np.datetime64('1970-01-01T00:02:00')
+    current_time = np.datetime64('now')
+    return int((current_time - start_time) / np.timedelta64(1, 's'))
