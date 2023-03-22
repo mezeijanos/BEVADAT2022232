@@ -110,7 +110,7 @@ def plot_population(input_df:pd.core.frame.DataFrame):
   fig, ax = plt.subplots()
 
   #plot the data to the axis
-  ax.bar(work_df['country'], work_df['population']/1000000)   #optional parameter: color='green'
+  ax.bar(work_df['country'], work_df['population'])   #optional parameter: color='green'
 
   #title
   #plt.suptitle('Population of Countries')
