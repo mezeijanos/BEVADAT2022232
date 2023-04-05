@@ -1,0 +1,9 @@
+train_set_split - Azért splittelünk, hogy legyen teszt adatunk, amivel le tudjuk ellenőrizni, hogy mennyire pontos a modellünk.
+
+euclidean - euklideszi távolságot számít atrain és a paraméterként átadott adat között
+
+predict -  a KNN algoritmus predikcióit számítja ki a paraméterként adott adathalmazon
+
+accuracy - a KNN algoritmus pontosságát számítja ki a tesztadatokon
+
+confusion_matrix - 
