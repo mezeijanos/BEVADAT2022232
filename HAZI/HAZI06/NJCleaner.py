@@ -65,8 +65,8 @@ class NJCleaner():
 
 
 
-nj = NJCleaner('2018_03.csv')
-nj.prep_df()
+#nj = NJCleaner('2018_03.csv')
+#nj.prep_df()
 
 """nj = NJCleaner('2018_03.csv')
 nj.data = nj.order_by_scheduled_time()
