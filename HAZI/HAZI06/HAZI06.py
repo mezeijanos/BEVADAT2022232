@@ -51,10 +51,49 @@ HAZI06-
 
 
 from sklearn.model_selection import train_test_split
-from NJCleaner import NJCleaner
-from DecisionTreeClassifier  import DecisionTreeClassifier
 import pandas as pd
 from sklearn.metrics import accuracy_score
+from NJCleaner import NJCleaner
+from DecisionTreeClassifier  import DecisionTreeClassifier
 
 
 
+nj = NJCleaner('./2018_03.csv')
+nj.prep_df()
+
+
+data = pd.read_csv('./data/NJ.csv', skiprows=1, header=None)
+
+
+X = data.iloc[:, :-1].values
+Y = data.iloc[:, -1].values.reshape(-1,1)
+X_train, X_test, Y_train, Y_test = train_test_split(X,Y,test_size=.2, random_state=41)
+
+
+classifier = DecisionTreeClassifier(min_samples_split=10, max_depth=8)
+classifier.fit(X_train, Y_train)
+
+Y_pred = classifier.predict(X_test)
+print(accuracy_score(Y_test, Y_pred))
+
+
+# min_samples_split=10, max_depth=8
+
+#1 min_samples_split=3, max_depth=3 ------> 0.7886666666666666
+#2 min_samples_split=3, max_depth=7 ------> 0.7979166666666667
+#3 min_samples_split=4, max_depth=5 ------> 0.7935
+#4 min_samples_split=4, max_depth=6 ------> 0.7946666666666666
+#5 min_samples_split=6, max_depth=6 ------> 0.7946666666666666
+#6 min_samples_split=7, max_depth=8 ------> 0.8001666666666667
+#7 min_samples_split=8, max_depth=6 ------> 0.7885
+#8 min_samples_split=8, max_depth=7 ------> 0.7979166666666667
+#9 min_samples_split=8, max_depth=8 ------> 0.8001666666666667
+#10 min_samples_split=10, max_depth=8 ----> 0.80025
+
+
+#Az NJCleaner osztály megírása egész könnyen ment, a paramétereket kicsit keresnem kellett a notebookban.
+
+#Lineárisan növelve-heurisztikusan próbálkoztam a paraméterválasztásnál, ami feltűnt, hogy 5-7, 5-8, 9-7 és hasonló választásoknál info_gain errort kaptam
+#További nehézséget okozott, hogy VS Code-ba sehogy nem akart felmenni se a scikit-learn se a scipy csomag, az sklearnt nem találta emiatt, egy idő után feladtam és colab-ban dolgoztam
+#Az importok sem akartak működni, amikor külön fájlokban voltak az osztályok és nem egy notebookban, nem tudtam összerakni :upside_down:
+#Megírtam a vonatkozó részt, de tesztelni nem tudtam emiatt, feltöltöm a main.jpynb-t is, ami egyben van és működött
